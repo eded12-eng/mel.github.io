@@ -1,0 +1,27 @@
+body {
+    font-family: 'Helvetica Neue', sans-serif;
+}
+
+.Header {
+    text-align: left;
+    margin-top: 30px;
+}
+
+.DateTime, .Usernames, .Comments {
+    padding: 12px;
+    text-align: center;
+}
+
+table {
+    width: 25%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 2px solid #000000;
+    padding: 10px;
+}
+
+th {
+    background-color: #e0e0e0;
+}
