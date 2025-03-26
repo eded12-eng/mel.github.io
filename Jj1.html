@@ -1,0 +1,37 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Способы добавления JavaScript</title>
+</head>
+<body>
+    <h1>Три метода подключения JavaScript</h1>
+    <pre>
+        &lt;script src=&quot;&quot;&gt;&lt;/script&gt;
+        &lt;button onclick=&quot;executeFunction()&quot;&gt;Нажми меня&lt;/button&gt;
+        &lt;script&gt; // JavaScript код &lt;/script&gt;
+    </pre>
+
+    <button onclick="executeFunction();">Нажми меня</button>
+
+    <script>
+        function executeFunction() {
+            console.log('Это вызов функции.');
+        }
+        
+        function anotherFunction() {
+            console.log('Я другая функция.');
+        }
+
+        const x = executeFunction;
+        console.log("Пытаемся вызвать x()");
+        x();
+        console.log("<<<<<<<<< Это был результат");
+
+        window.onload = function() {
+            console.log("Загрузка завершена");
+            console.log("Запуск executeFunction");
+            executeFunction();
+        }
+    </script>
+</body>
+</html>
