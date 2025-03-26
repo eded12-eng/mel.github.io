@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Веб-сайт</title>
+</head>
+<style>
+    #box1, #box2 {
+        width: 50px;
+        height: 50px;
+        position: absolute;
+    }
+    #box1 {
+        background-color: red;
+        top: 50px;
+    }
+    #box2 {
+        background-color: blue;
+        top: 150px;
+    }
+</style>
+<body>
+    <div id="box1"></div>
+    <div id="box2"></div>
+    <script>
+        const box1 = document.getElementById('box1');
+        const box2 = document.getElementById('box2');
+
+        let pos1 = 0;
+        let pos2 = 400;
+
+        function moveBoxes() {
+            pos1 += 2;
+            pos2 -= 2;
+
+            box1.style.left = `${pos1}px`;
+            box2.style.left = `${pos2}px`;
+
+            if (pos1 >= window.innerWidth || pos2 <= 0) {
+                pos1 = 0;
+                pos2 = 400;
+            }
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) 
+                {
+                    console.log('Произошло столкновение.');
+                }
+            });
+        }, {
+            threshold: 0.5
+        });
+
+        observer.observe(box1);
+        observer.observe(box2);
+
+        setInterval(moveBoxes, 50);
+    </script>
+</body>
+</html>
