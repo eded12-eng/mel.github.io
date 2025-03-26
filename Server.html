@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loader Example</title>
+    <style>
+        #loader {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+
+<div id="loader">
+    <img src="loader.gif" alt="Loading..."> 
+</div>
+
+<button id="requestButton">Отправить запрос</button>
+<div id="response"></div>
+
+<script>
+    document.getElementById('requestButton').addEventListener('click', function() {
+        const loader = document.getElementById('loader');
+        const responseDiv = document.getElementById('response');
+
+       
+        loader.style.display = 'block';
+
+       
+        fetch('server.php')
+            .then(response => response.text())
+            .then(data => {
+                
+                responseDiv.innerText = data;
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+            })
+            .finally(() => {
+                
+                loader.style.display = 'none';
+            });
+    });
+</script>
+
+</body>
+</html>
