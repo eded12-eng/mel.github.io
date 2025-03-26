@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пример JavaScript</title>
+    <style>
+        div, span { height: 100px; width: 100px; border: 1px solid black; }
+        body { background: yellow; }
+
+        #main_div:hover { background: green; }
+        .highlight_div:hover { background: red; }
+    </style>
+</head>
+
+<body>
+    <div id="main_div">Это мой id main_div</div>
+    <div class="highlight_div">Это мой класс highlight_div<button>Кнопка внутри .highlight_div</button></div>
+    <span>Привет! Это span</span>    
+
+    <script>
+        let bodyElement = document.querySelector("body");
+        let tableContent = '';
+        tableContent += '<table id="data_table">';
+        
+        for (let i = 0; i < 100; ++i) {
+            tableContent += '<tr>';
+            for (let j = 0; j < 100; ++j) {
+                tableContent += '<td>' + i + ":" + j + '</td>';
+            }
+            tableContent += '</tr>';
+        }
+        
+        tableContent += '</table>';
+        bodyElement.innerHTML += tableContent;
+    </script>
+</body>
+</html>
