@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Таблица умножения 100x100</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        table 
+      {
+            border-collapse: collapse;
+        }
+        th, td 
+      {
+            border: 1px solid #ddd;
+            padding: 4px;
+            text-align: center;
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<table id="multiplicationGrid"></table>
+
+<script>
+    const grid = document.getElementById('multiplicationGrid');
+
+    function generateRandomColor() 
+    {
+        const hexChars = '0123456789ABCDEF';
+        let colorCode = '#';
+        for (let i = 0; i < 6; i++)
+          {
+            colorCode += hexChars[Math.floor(Math.random() * 16)];
+        }
+        return colorCode;
+    }
+
+    for (let i = 1; i <= 100; i++)
+      {
+        const row = document.createElement('tr');
+        for (let j = 1; j <= 100; j++)
+          {
+            const cell = document.createElement('td');
+            cell.textContent = i * j;
+            cell.style.backgroundColor = generateRandomColor(); 
+            row.appendChild(cell);
+        }
+        grid.appendChild(row);
+    }
+</script>
+
+</body>
+</html>
