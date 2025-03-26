@@ -1,0 +1,48 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Создание таблицы с ячейками</title>
+    <style>
+        .cell1 { background-color: lightblue; }
+        .cell2 { background-color: lightgreen; }
+        .cell3 { background-color: lightcoral; }
+        .cell4 { background-color: lightgoldenrodyellow; }
+    </style>
+</head>
+<body>
+    <div id="some_div"></div> 
+    <ul id="some_ul">
+        <li>1</li>
+    </ul>
+    <table id="myTable"></table>
+
+<script>
+
+    let ul = document.getElementById('some_ul');
+    let table = document.getElementById('myTable');
+
+    console.log(ul);
+    console.log("<<< это ul");
+
+    
+    for(let i = 0; i < 100; i++) {
+        ul.innerHTML += `<li>Hello ${i}</li>`; 
+    }
+
+  
+    for(let row = 0; row < 100; row++) {
+        let tr = document.createElement('tr'); 
+        for(let cell = 0; cell < 100; cell++) {
+            let td = document.createElement('td'); 
+            td.innerText = `Row ${row + 1}, Cell ${cell + 1}`; 
+            td.className = `cell${(cell % 4) + 1}`; 
+            td.onclick = function() {
+                alert(`Вы нажали на ячейку: Row ${row + 1}, Cell ${cell + 1}`);
+            };
+            tr.appendChild(td); 
+        }
+        table.appendChild(tr); 
+    }
+</script>
+</body>
+</html>
