@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пример JavaScript</title>
+</head>
+<body>
+    <header>
+        <p>Пример заголовка 1</p>
+        <p>Пример заголовка 2</p>
+    </header>
+    <footer id="myFooter"></footer>
+
+    <script>
+        window.onload = function() 
+        {
+            
+            let header = document.querySelector('header'); 
+            let headerNodes = header.childNodes; 
+            
+            for (let i = 0; i < headerNodes.length; ++i)
+              {
+                if (headerNodes[i].nodeName === '#text') 
+                { 
+                    headerNodes[i].data = headerNodes[i].data.trim(); 
+                    if (headerNodes[i].data.length === 0) 
+                    { 
+                        continue; 
+                    } 
+                    
+                    myFooter.innerHTML += '<h1>' + headerNodes[i].data + '</h1>'; 
+                } 
+                else
+                {
+                    let nextChildNodes = headerNodes[i].childNodes; 
+                    for (let j = 0; j < nextChildNodes.length; ++j) 
+                    {
+                        if (nextChildNodes[j].nodeName === '#text')
+                        { 
+                            if (nextChildNodes[j].data.trim().length === 0)
+                            { 
+                                continue; 
+                            } 
+                            
+                            myFooter.innerHTML += '<h2>' + nextChildNodes[j].data + '</h2>';
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
