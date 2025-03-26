@@ -1,0 +1,30 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Пример видимости переменных в JavaScript</title>
+</head>
+<body>
+    <div id="myDiv"></div> 
+
+<script>
+  
+    function functionA() { 
+        let x = 10; 
+    }
+
+    function functionB() { 
+        var y = 10; 
+    }
+
+    function functionC() { 
+        z = 10; 
+    }
+
+    functionA();
+    functionB();
+    functionC();
+
+    console.log(window);
+</script>
+</body>
+</html>
