@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="paint.css" rel="stylesheet">
+    <title>Рисование</title>
+</head>
+<body>
+    <canvas id="drawingCanvas" width="400" height="300"></canvas>
+    <div class="toolbox">
+        <button id="reduceSize">-</button>
+        <span id="brushSize">10</span>
+        <button id="increaseSize">+</button>
+        <input type="color" id="colorPicker" />
+        <button id="clearCanvas">C</button>
+    </div>
+    <script>
+        const canvas = document.getElementById("drawingCanvas");
+        const increaseButton = document.getElementById("increaseSize");
+        const decreaseButton = document.getElementById("reduceSize");
+        const sizeElement = document.getElementById("brushSize");
+        const colorElement = document.getElementById("colorPicker");
+        const clearElement = document.getElementById("clearCanvas");
+        const ctx = canvas.getContext("2d");
+
+        let brushSize = 10;
+        let brushColor = "black";
+        let startX;
+        let startY;
+        let isDrawing = false;
+
+        const drawCircle = (x, y) => {
+            ctx.beginPath();
+            ctx.arc(x, y, brushSize, 0, Math.PI * 2);
+            ctx.fillStyle = brushColor;
+            ctx.fill();
+        };
+
+        const drawLine = (x1, y1, x2, y2) => {
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.strokeStyle = brushColor;
+            ctx.lineWidth = brushSize * 2;
+            ctx.stroke();
+        };
+
+        const updateSizeOnScreen = () => (sizeElement.innerText = brushSize);
+        canvas.addEventListener("mousedown", (e) => {
+            isDrawing = true;
+            startX = e.offsetX;
+            startY = e.offsetY;
+        });
+
+        canvas.addEventListener("mouseup", (e) => {
+            isDrawing = false;
+            startX = undefined;
+            startY = undefined;
+        });
+
+        canvas.addEventListener("mousemove", (e) => {
+            if (isDrawing) {
+                const endX = e.offsetX;
+                const endY = e.offsetY;
+                drawCircle(endX, endY);
+                drawLine(startX, startY, endX, endY);
+                startX = endX;
+                startY = endY;
+            }
+        });
+
+        increaseButton.addEventListener("click", (e) => {
+            brushSize += 5;
+            if (brushSize > 50) brushSize = 50;
+            updateSizeOnScreen();
+        });
+
+        decreaseButton.addEventListener("click", (e) => {
+            brushSize -= 5;
+            if (brushSize < 5) brushSize = 5;
+            updateSizeOnScreen();
+        });
+
+        colorElement.addEventListener("change", (e) => (brushColor = e.target.value));
+
+        clearElement.addEventListener("click", () => 
+            ctx.clearRect(0, 0, canvas.width, canvas.height)
+        );
+    </script>
+</body>
+</html>
